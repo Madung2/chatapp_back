@@ -56,6 +56,6 @@ io.on('connection', (socket)=>{ // connection이라는 이벤트가 발생하면
 
 
 
-server.listen(PORT, ()=>{
+server.listen(PORT, '0.0.0.0', ()=>{
     console.log(`This server is running in http://localhost:${PORT}`)
 })
