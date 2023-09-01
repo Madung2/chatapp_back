@@ -9,6 +9,8 @@ COPY package*.json ./
 # 프로젝트 의존성 설치
 # 소스 코드 복사
 RUN npm install
+RUN chmod +x node_modules/.bin/*
+
 COPY . .
 
 # TypeScript를 JavaScript로 빌드
