@@ -18,6 +18,12 @@ function ChatApp() {
             console.log('socket disconnected')
         };
     }, [chatLog]);
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();  // 기본 동작(예: 줄 바꿈)을 막습니다.
+            handleSendMessage();
+        }
+    };
 
     const handleSendMessage = () => {
         console.log(message)
@@ -26,12 +32,33 @@ function ChatApp() {
         setMessage('');
     };
     const Msg = ((props)=> { 
+        const styles = {
+            messageBox: {
+                padding: '10px',
+                margin: '10px 0',
+                borderRadius: '5px',
+                backgroundColor: '#f1f1f1',
+                maxWidth: '80%',
+                width: '100%',
+                display: 'block',
+                clear: 'both',
+                // float: 'none',
+            },
+            messageContainer: {
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end',  // 오른쪽 정렬
+                justifyContent: 'flex-end', // 아래쪽 정렬
+                height: '100%'  // 컨테이너 높이 설정
+            }
+        };
+        
+    
         return (
-            <div style={{width:'100%', display:'flex', justifyContent:'flex-end'}}>
-                <div style={{width:'50%', backgroundColor:'blue', color:'white', padding:'10px', borderRadius:'10px'}}>
-                    {props.text}
-                </div>
-            </div>
+            // <div style={styles.messageContainer}>
+                <div style={styles.messageBox}>{props.text}</div>
+            // </div>
+
         );
     }
     );
@@ -52,8 +79,8 @@ function ChatApp() {
                 border: '1px solid black',
                 padding: '10px',
                 marginBottom: '10px',
-                display:'flex',
-                'justifyContent': 'center'
+                // display:'flex',
+                // 'justifyContent': 'center'
             }}>
                 {chatLog.map((msg, idx) => <Msg key={idx} text={msg}/>)}
             </div>
@@ -65,7 +92,7 @@ function ChatApp() {
                 alignItems: 'center', // 중앙 정렬 (세로)
                 justifyContent: 'space-between' // 양쪽 요소 사이에 공간 배치
             }}>
-                <input value={message} style={{flexGrow:1, marginRight:'10px', height:'100%'}} onChange={(e) => setMessage(e.target.value)} />
+                <input value={message} style={{flexGrow:1, marginRight:'10px', height:'100%'}} onChange={(e) => setMessage(e.target.value)} onKeyPress={handleKeyPress} />
                 <button onClick={handleSendMessage} style={{height:'100%'}}>Send</button>
             </div>
         </div>
