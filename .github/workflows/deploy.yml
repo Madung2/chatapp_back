@@ -17,7 +17,12 @@ jobs:
       run: sudo apt-get install -y ssh-client
 
     - name: Test SSH Connection
+      env:
+        PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SERVER_IP: ${{ secrets.SERVER_IP }}
+        SERVER_USER: ${{ secrets.SERVER_USER }}
       run: |
+        echo "$PRIVATE_KEY" > private_key.pem
         ssh -i private_key.pem $SERVER_USER@$SERVER_IP "echo 'SSH Successful'"
 
 
