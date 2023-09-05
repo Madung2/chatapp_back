@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  back:
+    build:
+      context: ./chatapp
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+    volumes:
+      - ./chatapp:/app
+      - /app/node_modules
+  react:
+    build:
+      context: ./chatapp-client
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - /app/node_modules
+      - ./chatapp-client:/app
