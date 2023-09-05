@@ -74,7 +74,7 @@ function ChatApp() {
                 justifyContent: 'center', // 가로축에서 중앙 정렬
 
             }}>
-                <h1> Tasha T v1. Test </h1>
+                <h1> Tasha T v1. Test2 </h1>
             </div>
             <div style={{
                 height: '590px',       // div의 높이를 300px로 고정
