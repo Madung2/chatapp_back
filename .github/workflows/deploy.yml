@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  build_n_deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,8 +24,6 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
-        scp -i private_key.pem docker-compose.yml $SERVER_USER@$SERVER_IP:/path/on/server/
-        scp -i private_key.pem -r app/chatapp $SERVER_USER@$SERVER_IP:/path/on/server/app/
-        scp -i private_key.pem -r app/chatapp-client $SERVER_USER@$SERVER_IP:/path/on/server/app/
-        ssh -i private_key.pem $SERVER_USER@$SERVER_IP "cd /path/on/server && docker-compose up -d"
+        scp -i private_key.pem -r . $SERVER_USER@$SERVER_IP:/home/ubuntu/git/chatapp/
+        ssh -i private_key.pem $SERVER_USER@$SERVER_IP "cd /home/ubuntu/git/chatapp && docker-compose build && docker-compose down && docker-compose up -d"
         rm -f private_key.pem
