@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 
 const socket = io('http://3.34.45.12:3000',{
@@ -8,14 +8,16 @@ const socket = io('http://3.34.45.12:3000',{
 function ChatApp() {
     const [message, setMessage] = useState('');
     const [chatLog, setChatLog] = useState([]);
+    const messagesEndRef = useRef(null);
 
     useEffect(() => {
         socket.on('receive', (msg) => {
             setChatLog([...chatLog, msg]);
         });
 
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });  // chatLog가 업데이트될 때마다 스크롤 위치를 맨 아래로 조정합니다.
         return () => {
-            console.log('socket disconnected')
+            console.log('message received');
         };
     }, [chatLog]);
     const handleKeyPress = (event) => {
@@ -31,6 +33,9 @@ function ChatApp() {
         console.log('sent')
         setMessage('');
     };
+
+
+
     const Msg = ((props)=> { 
         const styles = {
             messageBox: {
@@ -41,8 +46,7 @@ function ChatApp() {
                 maxWidth: '80%',
                 width: '100%',
                 display: 'block',
-                clear: 'both',
-                // float: 'none',
+                clear: 'both'
             },
             messageContainer: {
                 display: 'flex',
@@ -81,6 +85,7 @@ function ChatApp() {
 
             }}>
                 {chatLog.map((msg, idx) => <Msg key={idx} text={msg}/>)}
+                <div ref={messagesEndRef} />  // 이 div는 항상 컨테이너의 맨 아래에 위치합니다.
             </div>
             <div style ={{
                 width: '100%',
