@@ -68,8 +68,7 @@ function ChatApp() {
             <div style={{ 
                 display: 'flex',        // flexbox 사용
                 justifyContent: 'center', // 가로축에서 중앙 정렬
-                // alignItems: 'center',     // 세로축에서 중앙 정렬
-                // height: '100vh'          // 전체 높이
+
             }}>
                 <h1> Tasha Talk v1. </h1>
             </div>
@@ -79,13 +78,11 @@ function ChatApp() {
                 border: '1px solid black',
                 padding: '10px',
                 marginBottom: '10px',
-                // display:'flex',
-                // 'justifyContent': 'center'
+
             }}>
                 {chatLog.map((msg, idx) => <Msg key={idx} text={msg}/>)}
             </div>
             <div style ={{
-                // backgroundColor : 'blue',
                 width: '100%',
                 height: '50px',
                 display: 'flex', // flexbox를 사용하여 가로로 요소를 배치
