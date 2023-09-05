@@ -11,14 +11,14 @@
 <body>
 
     <div style="text-align:center;">
-        <h2>Socket.io Chat!!!!</h2>
+        <h2>Socket.io Chat!!!! This is backend</h2>
         <div id="chatBox" style="border:1px solid black; height:300px; overflow-y:scroll; padding:10px; margin-bottom:10px;"></div>
         <input type="text" id="messageInput" placeholder="Type your message">
         <button onclick="sendMessage()">Send</button>
     </div>
 
     <script>
-        const socket = io('http://localhost:3000');
+        const socket = io('http://3.27.164.248:3000');
 
         socket.on('connect', () => {
             console.log('Connected to server');
