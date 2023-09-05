@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('http://3.34.45.12:3000',{
+const socket = io('http://www.tashaworld.net:3000',{
     transports: ['websocket']
 });
 
@@ -85,7 +85,7 @@ function ChatApp() {
 
             }}>
                 {chatLog.map((msg, idx) => <Msg key={idx} text={msg}/>)}
-                <div ref={messagesEndRef} />  // 이 div는 항상 컨테이너의 맨 아래에 위치합니다.
+                <div ref={messagesEndRef} /> {/* 스크롤 위치를 조정할 때 사용할 엘리먼트입니다. */} 
             </div>
             <div style ={{
                 width: '100%',
