@@ -30,7 +30,9 @@ jobs:
         key: ${{ secrets.HOME }}
         port: 22 # ssh default port 22
         script: |
-          cd /home/ubuntu
+          echo 'UBUNTU DEPLOY START'
+          echo 'CHATAPP BACK DEPLOY START'
+          cd /home/ubuntu/chatapp_back
           git pull
           sudo docker-compose build --no-cache 
           sudo docker-compose down
