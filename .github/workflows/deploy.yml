@@ -22,8 +22,8 @@ jobs:
         SERVER_IP: ${{ secrets.SERVER_IP }}
         SERVER_USER: ${{ secrets.SERVER_USER }}
       run: |
-        echo "$PRIVATE_KEY" > private_key.pem
-        chmod 600 private_key.pem
-        scp -i private_key.pem -r . $SERVER_USER@$SERVER_IP:/home/ubuntu/git/chatapp/
-        ssh -i private_key.pem $SERVER_USER@$SERVER_IP "cd /home/ubuntu/git/chatapp && docker-compose build && docker-compose down && docker-compose up -d"
-        rm -f private_key.pem
+        echo "$PRIVATE_KEY" > tasha2.pem
+        chmod 600 tasha2.pem
+        scp -i tasha2.pem -r . $SERVER_USER@$SERVER_IP:/home/ubuntu/git/chatapp/
+        ssh -i tasha2.pem $SERVER_USER@$SERVER_IP "cd /home/ubuntu/git/chatapp && docker-compose build && docker-compose down && docker-compose up -d"
+        rm -f tasha2.pem
