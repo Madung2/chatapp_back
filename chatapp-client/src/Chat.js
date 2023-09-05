@@ -25,7 +25,16 @@ function ChatApp() {
         console.log('sent')
         setMessage('');
     };
-
+    const Msg = ((props)=> { 
+        return (
+            <div style={{width:'100%', display:'flex', justifyContent:'flex-end'}}>
+                <div style={{width:'50%', backgroundColor:'blue', color:'white', padding:'10px', borderRadius:'10px'}}>
+                    {props.text}
+                </div>
+            </div>
+        );
+    }
+    );
     return (
     <div>
         <div style={{height:'100vh', width:'470px'}}>
@@ -46,7 +55,7 @@ function ChatApp() {
                 display:'flex',
                 'justifyContent': 'center'
             }}>
-                {chatLog.map((msg, idx) => <p key={idx}>{msg}</p>)}
+                {chatLog.map((msg, idx) => <Msg key={idx} text={msg}/>)}
             </div>
             <div style ={{
                 // backgroundColor : 'blue',
