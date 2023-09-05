@@ -16,6 +16,11 @@ jobs:
     - name: Install SSH client
       run: sudo apt-get install -y ssh-client
 
+    - name: Display Environment Variables
+      run: |
+        echo "SERVER_IP: ${{ secrets.SERVER_IP }}"
+        echo "SERVER_USER: ${{ secrets.SERVER_USER }}"
+
     - name: Deploy to EC2
       env:
         PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
