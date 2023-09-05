@@ -35,7 +35,7 @@ function ChatApp() {
                 // alignItems: 'center',     // 세로축에서 중앙 정렬
                 // height: '100vh'          // 전체 높이
             }}>
-                <h1> Chat App</h1>
+                <h1> Tasha Talk </h1>
             </div>
             <div style={{
                 height: '590px',       // div의 높이를 300px로 고정
