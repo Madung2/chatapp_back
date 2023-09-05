@@ -38,6 +38,6 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
     });
 });
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`This server is running in http://localhost:${PORT}`);
 });
