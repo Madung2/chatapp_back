@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgrespw
+    volumes:
+      - /opt/postgres/data:/var/lib/postgresql/data
+    ports:
+      - "5000:5432"
   back:
     build:
       context: ./chatapp
