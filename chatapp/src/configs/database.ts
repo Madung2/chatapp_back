@@ -4,31 +4,7 @@ dotenv.config({ path: __dirname + '/../../../.env' });
 console.log(process.env.DB_HOST);
 
 import { Sequelize } from 'sequelize';
-
-// const db = async (): Promise<Connection> => {
-//     try {
-//         const connection = await createConnection({
-//             type: "postgres",
-//             host: process.env.DB_HOST,
-//             port: Number(process.env.DB_PORT),
-//             username: process.env.DB_USERNAME,
-//             password: process.env.DB_PASSWORD,
-//             database: process.env.DB_NAME,
-//             synchronize: true, // 이 옵션은 개발 중에만 사용하도록 하세요. 프로덕션에서는 마이그레이션을 사용하세요.
-//             logging: false,
-//             entities: [
-//                 // 여기에 모델/엔터티를 추가하세요.
-//             ],
-//         });
-
-//         console.log("Database connection established successfully");
-//         return connection;
-//     } catch (error) {
-//         console.error("Error connecting to the database", error);
-//         throw error;
-//     }
-// };
-
+import MessageModel from '../models/Message';
 
 
 const db_config = {
@@ -42,4 +18,5 @@ const db_config = {
   };
   
 const sequelize = new Sequelize(db_config);
-export default sequelize;
+const Message = MessageModel(sequelize, Sequelize);
+export { sequelize, Message }

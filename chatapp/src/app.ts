@@ -2,8 +2,7 @@ import express, { Request, Response, Application } from 'express';
 import { Server } from 'socket.io';
 import http from 'http';
 import cors from 'cors';
-import sequelize from './configs/database';
-import Message from './models/Message';
+import { sequelize } from './configs/database';
 import * as dotenv from 'dotenv';
 dotenv.config({ path: __dirname + '/../../../.env' });
 
